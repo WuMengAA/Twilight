@@ -1,11 +1,15 @@
 # 站点配置
 site:
     # 站点 URL（以斜杠结尾）
-    siteURL: "https://twilight.spr-aachen.com/"
+    siteURL: "https://www.245959623.xyz/"
     # 站点标题
-    title: "咸林智维"
+    title: "咸林智维_Official blog"
     # 站点副标题
-    subtitle: "Blog Template"
+    subtitle:
+  - "观察 · 部署 · 维护"
+  - "熵 · 治未病"
+  - "看见看不见的问题"
+  - "让改变发生"
     # 语言配置
     lang: "zh"
     # 翻译配置
@@ -77,10 +81,13 @@ site:
                 # 在主页显示文本
                 enable: true
                 # 主标题
-                title: "Twilight"
+                title: "咸林智维Official blog"
                 # 副标题，支持单个字符串或字符串数组
                 subtitle:
-                    - "Illuminate Our Paths"
+                    - "观察 · 部署 · 维护"
+                    - "熵 · 治未病"
+                    - "看见看不见的问题"
+                    - "让改变发生"
                 # 副标题打字机效果
                 typewriter:
                     # 启用副标题打字机效果
@@ -116,7 +123,7 @@ site:
             # 壁纸透明度，0-1之间
             opacity: 0.9
             # 背景模糊程度 (像素值)
-            blur: 1
+            blur: 3
             # 导航栏透明模式
             navbar:
                 transparentMode: "semi"
@@ -131,7 +138,12 @@ site:
             # 是否启用加载标题
             enable: true
             # 加载标题文本
-            content: "LOADING"
+            content: 
+            - "咸林智维"
+            - "Xianlin Wisdom"
+            - "观察中..."
+            - "降熵中..."
+            - "让改变发生"
             # 动画周期 (s)
             interval: 1.5
         # 加载动画配置
@@ -258,23 +270,25 @@ profile:
     # 头像配置 (相对于 /public 目录)
     avatar: "/assets/images/avatar.jpg"
     # 信息配置
-    name: "Twilight"
+    name: "咸林智维"
     # 简介配置
     bio: "Hi"
     # 链接配置
     links:
-        - # 链接示例
-            # 名字
-            name: "WuMengAA"
-            # 图标
-            icon: "fa6-brands:github"
-            # 链接
-            url: "https://github.com/"
+    - name: "GitHub"
+      icon: "fa6-brands:github"
+      url: "https://github.com/WuMengAA"
+    - name: "QQ群"
+      icon: "fa6-brands:qq"
+      url: "https://qun.qq.com/universal-share/share?ac=1&authKey="
+    - name: "哔哩哔哩"
+      icon: "fa6-brands:bilibili"
+      url: "https://space.bilibili.com/3461562041895547"-
 
 # 公告配置
 announcement:
     # 公告标题
-    title: "Announcement"
+    title: "咸林智维"
     # 公告内容
     content: "Welcome to my blog!"
     # 允许用户关闭公告
@@ -406,7 +420,7 @@ musicPlayer:
 # 看板娘配置
 pio:
     # 启用看板娘
-    enable: false
+    enable: true
     # 模型文件路径
     models:
         - "/pio/models/pio/model.json"
@@ -419,7 +433,7 @@ pio:
     # 展现模式
     mode: "draggable"
     # 是否在移动设备上隐藏
-    hiddenOnMobile: true
+    hiddenOnMobile: false
     # 对话框配置
     dialog:
         # 欢迎词
