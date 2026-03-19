@@ -6,10 +6,10 @@ site:
     title: "咸林智维_Official blog"
     # 站点副标题
     subtitle:
-  - "观察 · 部署 · 维护"
-  - "熵 · 治未病"
-  - "看见看不见的问题"
-  - "让改变发生"
+    - "观察 · 部署 · 维护"
+    - "熵 · 治未病"
+    - "看见看不见的问题"
+    - "让改变发生"
     # 语言配置
     lang: "zh"
     # 翻译配置
@@ -206,6 +206,11 @@ navbar:
         - # 一级导航链接 - 好友 (预设)
             "Friends"
         - # 一级导航链接 - 关于 (预设)
+            - # 点歌系统子菜单
+              name: "点歌系统"
+              url: "https://245959623.xyz"
+              icon: "material-symbols:music-note"
+              description: "VoiceHub · 校园点歌平台"
             "About"
 
 # 侧边栏配置
@@ -283,7 +288,7 @@ profile:
       url: "https://qun.qq.com/universal-share/share?ac=1&authKey="
     - name: "哔哩哔哩"
       icon: "fa6-brands:bilibili"
-      url: "https://space.bilibili.com/3461562041895547"-
+      url: "https://space.bilibili.com/3461562041895547"
 
 # 公告配置
 announcement:
@@ -436,21 +441,14 @@ pio:
     hiddenOnMobile: false
     # 对话框配置
     dialog:
-        # 欢迎词
-        welcome: "Welcome!"
-        # 触摸提示
-        touch:
-            - "What are you doing?"
-            - "Stop touching me!"
-            - "Don't bully me like that!"
-            - "(｡í _ ì｡)"
-        # 首页提示
-        home: "Click here to go back to homepage!"
-        # 换装提示
-        skin:
-            - "Want to see my new outfit?"
-            - "The new outfit looks great~"
-        # 关闭提示
-        close: "See you next time~"
-        # 关于链接
-        link: "https://nav.kungal.org"
+        dialog:
+    welcome: "欢迎来到咸林智维！"
+    touch:
+        - "你在做什么呀？"
+        - "别戳我啦！"
+        - "再戳我要生气了！"
+        - "(｡í _ ì｡)"
+    home: "点击这里回到首页～"
+    close: "下次再见～"
+    # 关于链接
+    link: "https://nav.kungal.org"
