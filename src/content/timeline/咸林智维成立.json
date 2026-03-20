@@ -1,0 +1,23 @@
+{
+    "title": "咸林智维成立",
+    "description": "学生技术志愿服务组织正式成立，确立观察·部署·维护核心理念。",
+    "type": "achievement",
+    "startDate": "2026-03-15",
+    "endDate": "",
+    "skills": ["组织建设", "技术理念"],
+    "achievements": [
+        "QQ交流群建立",
+        "第一次全体会议召开no",
+        "各班联络人招募完成fast！"
+    ],
+    "links": [
+        {
+            "name": "成立公告",
+            "url": "/posts/announcement",
+            "type": "documentation"
+        }
+    ],
+    "icon": "mdi:school",
+    "color": "#3b82f6",
+    "featured": true
+}
