@@ -49,19 +49,22 @@ const hasBannerLink = !!siteConfig.wallpaper.banner?.credit?.url;
 // 检查是否为首页
 const isHomePage = pathsEqual(Astro.url.pathname, url("/"));
 
-// 计算主内容区域位置
-const mainPanelTop = siteConfig.wallpaper.mode === "banner"
+// 计算主内容区域位置（使用 margin-top 而不是 top）
+const mainPanelMarginTop = siteConfig.wallpaper.mode === "banner"
     ? `calc(${BANNER_HEIGHT}vh - ${MAIN_PANEL_OVERLAPS_BANNER_HEIGHT}rem)`
     : "5.5rem";
 
 // 当banner被禁用时，主内容区域应该始终从顶栏下面开始
-const finalMainPanelTop = siteConfig.wallpaper.mode === "banner" ? mainPanelTop : "5.5rem";
+const finalMainPanelMarginTop = siteConfig.wallpaper.mode === "banner" ? mainPanelMarginTop : "5.5rem";
 
 // 检查是否应该启用半透明效果
 const shouldEnableTransparency = siteConfig.wallpaper.mode === "banner" || siteConfig.wallpaper.mode === "fullscreen";
 
 // 为组件添加半透明效果的CSS类
 const transparentClass = shouldEnableTransparency ? "wallpaper-transparent" : "";
+
+// 添加主容器样式类
+const mainContainerClass = siteConfig.wallpaper.mode !== "banner" ? "no-banner-layout" : "";
 
 /**
  * Sidebar
@@ -129,18 +132,18 @@ const {
         class={siteConfig.wallpaper.mode === "banner" ? "" : "hidden"}
     />
 
-    <!-- Main content -->
+    <!-- Main content - 修改为相对定位，使用 margin-top 替代绝对定位 -->
     <div
-        class={`absolute w-full z-30 pointer-events-none transition-all duration-600 ${siteConfig.wallpaper.mode !== "banner" ? "no-banner-layout" : ""} ${transparentClass}`}
-        style={`top: ${finalMainPanelTop}`}
+        class={`relative w-full z-30 pointer-events-none transition-all duration-600 ${mainContainerClass} ${transparentClass}`}
+        style={`margin-top: ${finalMainPanelMarginTop};`}
     >
         <div
             class="relative max-w-(--page-width) mx-auto pointer-events-auto"
         >
             <div
-                    id="main-grid"
-                    class={`transition-all duration-600 w-full left-0 right-0 grid ${gridCols} grid-rows-[auto] mx-auto gap-4 px-0 md:px-4 ${!hasAnyComponents ? "mobile-no-sidebar" : ""} ${(hasLeftSidebar || hasRightSidebar) ? "mobile-both-sidebar" : ""}`}
-                >
+                id="main-grid"
+                class={`transition-all duration-600 w-full left-0 right-0 grid ${gridCols} grid-rows-[auto] mx-auto gap-4 px-0 md:px-4 ${!hasAnyComponents ? "mobile-no-sidebar" : ""} ${(hasLeftSidebar || hasRightSidebar) ? "mobile-both-sidebar" : ""}`}
+            >
                 <!-- Banner image credit -->
                 {
                     hasBannerCredit && (
