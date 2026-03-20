@@ -48,6 +48,7 @@ export default defineConfig({
     site: siteConfig.siteURL,
     base: "/",
     trailingSlash: "always",
+    output: 'hybrid'
     adapter: adapter,
     integrations: [
         decapCmsOauth({
