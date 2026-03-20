@@ -12,10 +12,10 @@ import decapCmsOauth from "astro-decap-cms-oauth";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeComponents from "rehype-components"; /* Render the custom directive content */
+import rehypeComponents from "rehype-components";
 import rehypeKatex from "rehype-katex";
 import rehypeSlug from "rehype-slug";
-import remarkDirective from "remark-directive"; /* Handle directives */
+import remarkDirective from "remark-directive";
 import remarkGithubAdmonitionsToDirectives from "remark-github-admonitions-to-directives";
 import remarkMath from "remark-math";
 import remarkSectionize from "remark-sectionize";
@@ -33,7 +33,6 @@ import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.js";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
-
 // Choose adapter depending on deployment environment
 const adapter = process.env.GITHUB_ACTIONS
     ? undefined
@@ -50,22 +49,14 @@ export default defineConfig({
     trailingSlash: "always",
     output: "server",
     adapter: adapter,
-import { envField } from 'astro/config';
-
-export default defineConfig({
-    site: siteConfig.siteURL,
-    base: "/",
-    trailingSlash: "always",
-    output: 'server',
-    adapter: adapter,
     integrations: [
         decapCmsOauth({
             decapCMSVersion: "3.9.0",
-            oauthDisabled: false, // Disable it to use oauth, requires .env configuration
+            oauthDisabled: false,
         }),
         swup({
             theme: false,
-            animationClass: "transition-swup-", // see https://swup.js.org/options/#animationselector
+            animationClass: "transition-swup-",
             containers: [
                 "#swup-container",
                 "#left-sidebar",
@@ -78,12 +69,10 @@ export default defineConfig({
             updateHead: true,
             updateBodyClass: false,
             globalInstance: true,
-            // Scroll related configuration optimization
-            smoothScrolling: false, // Disable smooth scrolling to improve performance and avoid conflicts with anchor navigation
+            smoothScrolling: false,
             resolveUrl: (url) => url,
             animateHistoryBrowsing: false,
             skipPopStateHandling: (event) => {
-                // Skip anchor link handling, let the browser handle it natively
                 return event.state && event.state.url && event.state.url.includes("#");
             },
         }),
@@ -118,8 +107,7 @@ export default defineConfig({
                 borderRadius: "0.75rem",
                 borderColor: "none",
                 codeFontSize: "0.875rem",
-                codeFontFamily:
-                    "'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+                codeFontFamily: "'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
                 codeLineHeight: "1.5rem",
                 frames: {
                     editorBackground: "var(--codeblock-bg)",
@@ -210,7 +198,6 @@ export default defineConfig({
         build: {
             rollupOptions: {
                 onwarn(warning, warn) {
-                    // temporarily suppress this warning
                     if (
                         warning.message.includes("is dynamically imported by") &&
                         warning.message.includes("but also statically imported by")
