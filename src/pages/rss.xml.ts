@@ -15,6 +15,16 @@ import { getFileDirFromPath, getPostUrl } from "@utils/url";
 
 const markdownParser = new MarkdownIt();
 
+// 辅助函数：确保 description 是字符串
+function ensureString(value: string | string[] | undefined, defaultValue: string): string {
+    if (!value) return defaultValue;
+    if (Array.isArray(value)) {
+        // 将数组转换为字符串，用 · 分隔
+        return value.join(' · ');
+    }
+    return value;
+}
+
 // get dynamic import of images as a map collection
 const imagesGlob = import.meta.glob<{ default: ImageMetadata }>(
     "/src/content/**/*.{jpeg,jpg,png,gif,webp}", // include posts and assets
@@ -88,13 +98,13 @@ export async function GET(context: APIContext) {
         const categories: string[] = [];
         const categoryLabel = getCategoryPathLabel(post.data.category);
         if (categoryLabel) categories.push(categoryLabel);
-        
+
         const tags = parseTags(post.data.tags);
         if (tags && tags.length > 0) categories.push(...tags);
 
         feed.push({
             title: post.data.title,
-            description: post.data.description,
+            description: post.data.description || ensureString(siteConfig.subtitle, "No description"),
             pubDate: post.data.published,
             link: getPostUrl(post),
             categories: categories,
@@ -105,9 +115,12 @@ export async function GET(context: APIContext) {
         });
     }
 
+    // 确保 description 是字符串
+    const rssDescription = ensureString(siteConfig.subtitle, "咸林智维 - 观察 · 部署 · 维护");
+
     return rss({
         title: siteConfig.title,
-        description: siteConfig.subtitle || "No description",
+        description: rssDescription,  // 现在一定是字符串
         site: context.site,
         items: feed,
         customData: `<language>${siteConfig.lang}</language>`,
