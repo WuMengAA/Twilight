@@ -164,10 +164,9 @@ navbar:
         - "About"
         # 一级导航链接 - 点歌系统
         - name: "Voice-hub"
-          url: "https://245959623.xyz"
+          url: "voicehub/"
           icon: "material-symbols:music-note"
           description: "VoiceHub校园点歌平台"
-          target: "_blank" #新标签页打开
 
 # 侧边栏配置
 sidebar:
