@@ -58,23 +58,6 @@ export default defineConfig({
     trailingSlash: "always",
     output: 'server',
     adapter: adapter,
-    
-    env: {
-      schema: {
-        OAUTH_GITHUB_CLIENT_ID: envField.string({
-                context: 'server',
-                access: 'secret',
-                optional: false,
-        }),
-        OAUTH_GITHUB_CLIENT_SECRET: envField.string({
-                context: 'server',
-                access: 'secret',
-                optional: false,
-        }),
-    }
-},
-    
-
     integrations: [
         decapCmsOauth({
             decapCMSVersion: "3.9.0",
