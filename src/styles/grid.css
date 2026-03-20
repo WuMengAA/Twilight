@@ -1,7 +1,13 @@
-/* 当banner被禁用时的布局样式 */
+/* 当banner被禁用时的布局样式 - 修复版 */
 .no-banner-layout {
-    top: 5.5rem !important;
+    margin-top: 5.5rem !important;  /* 使用 margin-top 替代 top */
     min-height: calc(100vh - 5.5rem) !important;
+    position: relative !important;
+}
+
+/* 确保主内容区域可以滚动 */
+.no-banner-layout + * {
+    overflow-y: auto;
 }
 
 /* 隐藏已收起横幅或非横幅模式时的图片版权描述 */
@@ -9,6 +15,24 @@
     display: none !important;
 }
 
+/* 修复主容器样式 - 确保相对定位元素正常显示 */
+.relative.w-full.z-30 {
+    position: relative !important;
+    display: block;
+}
+
+/* 确保内容区域有足够高度触发滚动 */
+#main-grid {
+    min-height: calc(100vh - 200px);
+    padding-bottom: 2rem;
+}
+
+/* 内容包装器确保高度自适应 */
+#content-wrapper {
+    min-height: 300px;
+    width: 100%;
+    display: block;
+}
 
 /* 手机端无侧边栏布局优化 */
 @media (max-width: 768px) {
@@ -47,10 +71,17 @@
     .mobile-both-sidebar .footer {
         grid-column: 1 / -1 !important;
     }
+    
+    /* 移动端调整 margin-top */
+    .no-banner-layout {
+        margin-top: 4rem !important;
+        min-height: calc(100vh - 4rem) !important;
+    }
 }
 
 /* 小屏手机无侧边栏布局优化 */
-@media (max-width: 512px) {/* 修复双侧边栏模式在移动端的布局问题 */
+@media (max-width: 512px) {
+    /* 修复双侧边栏模式在移动端的布局问题 */
     .mobile-both-sidebar {
         /* 确保在移动端使用单列布局 */
         grid-template-columns: 1fr !important;
@@ -68,4 +99,126 @@
     .mobile-both-sidebar .footer {
         grid-column: 1 / -1 !important;
     }
+    
+    /* 小屏幕进一步调整 */
+    .no-banner-layout {
+        margin-top: 3.5rem !important;
+        min-height: calc(100vh - 3.5rem) !important;
+    }
+}
+
+/* 确保侧边栏在滚动时正确固定 */
+#left-sidebar,
+#right-sidebar,
+#middle-sidebar {
+    position: sticky;
+    top: 6rem;
+    height: fit-content;
+    max-height: calc(100vh - 7rem);
+    overflow-y: auto;
+}
+
+/* 移动端侧边栏调整 */
+@media (max-width: 768px) {
+    #left-sidebar,
+    #right-sidebar,
+    #middle-sidebar {
+        position: relative;
+        top: 0;
+        max-height: none;
+    }
+}
+
+/* 页脚样式 */
+.footer {
+    margin-top: 2rem;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+/* 确保主体可以滚动 */
+html {
+    overflow-y: auto !important;
+    scroll-behavior: smooth;
+    height: auto !important;
+}
+
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+    height: auto !important;
+}
+
+/* 确保所有绝对定位元素不影响主滚动容器 */
+.absolute {
+    pointer-events: none;
+}
+
+/* 但内部的交互元素需要恢复指针事件 */
+.absolute * {
+    pointer-events: auto;
+}
+
+/* 修复 Swup 容器的高度问题 */
+#swup-container {
+    min-height: 50vh;
+    display: block;
+}
+
+/* 修复 grid 布局高度问题 */
+.grid {
+    height: auto !important;
+    min-height: auto !important;
+}
+
+/* 确保主内容区域不限制高度 */
+main {
+    height: auto !important;
+    min-height: auto !important;
+    overflow: visible !important;
+}
+
+/* 过渡动画不影响滚动 */
+.transition-swup-fade {
+    transition: opacity 0.3s ease;
+}
+
+.onload-animation-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 壁纸透明模式 */
+.wallpaper-transparent {
+    background-color: transparent;
+}
+
+/* 强制修复滚动问题 - 最后的保障 */
+body {
+    overflow-y: auto !important;
+}
+
+html {
+    overflow-y: auto !important;
+    height: auto !important;
+}
+
+/* 确保所有主要容器都不限制高度 */
+#__astro,
+.astro-root,
+.astro-island {
+    display: block;
+    min-height: auto;
+    height: auto;
 }
