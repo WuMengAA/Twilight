@@ -1,0 +1,12 @@
+{
+    "name": "技术写作",
+    "description": "技术文档、教程编写、经验沉淀",
+    "icon": "mdi:typewriter",
+    "category": "other",
+    "level": "intermediate",
+    "experience": {
+        "years": 0,
+        "months": 3
+    },
+    "color": "#f59e0b"
+}
