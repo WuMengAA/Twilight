@@ -1,0 +1,44 @@
+---
+// 页面元数据
+---
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoiceHub 点歌系统 | 咸林智维</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0a1929;
+        }
+        .voicehub-container {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        /* 可选：添加加载提示 */
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b8d0e0;
+            font-family: system-ui, sans-serif;
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="loading" id="loading">加载中...</div>
+    <iframe 
+        src="https://245959623.xyz" 
+        class="voicehub-container"
+        @load="document.getElementById('loading').style.display = 'none'"
+    ></iframe>
+</body>
+</html>
