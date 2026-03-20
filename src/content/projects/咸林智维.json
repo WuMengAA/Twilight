@@ -1,0 +1,24 @@
+{
+    "title": "咸林智维",
+    "description": "咸林中学学生技术志愿服务组织，致力于校园设备维护、技术推广与经验沉淀。",
+    "image": "/assets/images/xianlin-project.jpg",
+    "category": "organization",
+    "techStack": [
+        "Astro",
+        "TypeScript",
+        "Tailwind CSS",
+        "Markdown"
+    ],
+    "status": "in-progress",
+    "liveDemo": "https://www.245959623.xyz",
+    "sourceCode": "https://github.com/WuMengAA/Xianlin-Wisdom-Blog",
+    "startDate": "2026-03-01",
+    "endDate": "",
+    "featured": true,
+    "tags": [
+        "技术组织",
+        "志愿服务",
+        "校园",
+        "开源"
+    ]
+}
