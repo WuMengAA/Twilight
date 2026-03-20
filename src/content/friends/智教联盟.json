@@ -1,7 +1,7 @@
 {
-  "tags": [],
-  "title": "智教联盟",
-  "imgurl": "https://forum.smart-teach.cn/favicon.ico",
-  "desc": "智慧教育技术交流社区",
-  "siteurl": "https://forum.smart-teach.cn"
+    "title": "智教联盟",
+    "imgurl": "https://forum.smart-teach.cn/favicon.ico",
+    "desc": "智慧教育技术交流社区",
+    "siteurl": "https://forum.smart-teach.cn",
+    "tags": ["教育", "技术"]
 }
