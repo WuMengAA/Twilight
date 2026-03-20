@@ -1,12 +1,44 @@
-/* 当banner被禁用时的布局样式 - 修复版 */
+/* grid.css - 完整修改版 */
+
+/* 当banner被禁用时的布局样式 - 修改为相对定位 */
 .no-banner-layout {
-    margin-top: 5.5rem !important;  /* 使用 margin-top 替代 top */
-    min-height: calc(100vh - 5.5rem) !important;
+    margin-top: 5.5rem !important;
     position: relative !important;
+    min-height: calc(100vh - 5.5rem) !important;
 }
 
-/* 确保主内容区域可以滚动 */
-.no-banner-layout + * {
+/* 修复banner模式下的主容器样式 */
+.relative.w-full.z-30 {
+    position: relative !important;
+    min-height: 100vh;
+}
+
+/* 确保主内容区域有足够高度 */
+#main-grid {
+    min-height: calc(100vh - 200px);
+    padding-bottom: 2rem;
+}
+
+/* 修复滚动条问题 */
+html {
+    overflow-y: auto !important;
+    scroll-behavior: smooth;
+}
+
+body {
+    overflow-x: hidden;
+    min-height: 100vh;
+    position: relative;
+}
+
+/* 侧边栏粘性定位优化 */
+#left-sidebar,
+#right-sidebar,
+#middle-sidebar {
+    position: sticky;
+    top: 6rem;
+    height: fit-content;
+    max-height: calc(100vh - 7rem);
     overflow-y: auto;
 }
 
@@ -15,23 +47,21 @@
     display: none !important;
 }
 
-/* 修复主容器样式 - 确保相对定位元素正常显示 */
-.relative.w-full.z-30 {
-    position: relative !important;
-    display: block;
-}
-
-/* 确保内容区域有足够高度触发滚动 */
-#main-grid {
-    min-height: calc(100vh - 200px);
-    padding-bottom: 2rem;
-}
-
-/* 内容包装器确保高度自适应 */
+/* 确保内容包装器正常显示 */
 #content-wrapper {
     min-height: 300px;
     width: 100%;
-    display: block;
+}
+
+/* 页脚样式优化 */
+.footer {
+    margin-top: auto;
+    padding: 1rem 0;
+}
+
+/* Swup 过渡不影响滚动 */
+.transition-swup-fade {
+    transition: opacity 0.3s ease;
 }
 
 /* 手机端无侧边栏布局优化 */
@@ -72,10 +102,13 @@
         grid-column: 1 / -1 !important;
     }
     
-    /* 移动端调整 margin-top */
+    /* 移动端主容器边距调整 */
+    .relative.w-full.z-30 {
+        margin-top: 4rem !important;
+    }
+    
     .no-banner-layout {
         margin-top: 4rem !important;
-        min-height: calc(100vh - 4rem) !important;
     }
 }
 
@@ -100,90 +133,17 @@
         grid-column: 1 / -1 !important;
     }
     
-    /* 小屏幕进一步调整 */
+    /* 小屏手机进一步缩小边距 */
+    .relative.w-full.z-30 {
+        margin-top: 3.5rem !important;
+    }
+    
     .no-banner-layout {
         margin-top: 3.5rem !important;
-        min-height: calc(100vh - 3.5rem) !important;
     }
 }
 
-/* 确保侧边栏在滚动时正确固定 */
-#left-sidebar,
-#right-sidebar,
-#middle-sidebar {
-    position: sticky;
-    top: 6rem;
-    height: fit-content;
-    max-height: calc(100vh - 7rem);
-    overflow-y: auto;
-}
-
-/* 移动端侧边栏调整 */
-@media (max-width: 768px) {
-    #left-sidebar,
-    #right-sidebar,
-    #middle-sidebar {
-        position: relative;
-        top: 0;
-        max-height: none;
-    }
-}
-
-/* 页脚样式 */
-.footer {
-    margin-top: 2rem;
-    padding: 1rem 0;
-    width: 100%;
-}
-
-/* 确保主体可以滚动 */
-html {
-    overflow-y: auto !important;
-    scroll-behavior: smooth;
-    height: auto !important;
-}
-
-body {
-    overflow-x: hidden;
-    min-height: 100vh;
-    position: relative;
-    height: auto !important;
-}
-
-/* 确保所有绝对定位元素不影响主滚动容器 */
-.absolute {
-    pointer-events: none;
-}
-
-/* 但内部的交互元素需要恢复指针事件 */
-.absolute * {
-    pointer-events: auto;
-}
-
-/* 修复 Swup 容器的高度问题 */
-#swup-container {
-    min-height: 50vh;
-    display: block;
-}
-
-/* 修复 grid 布局高度问题 */
-.grid {
-    height: auto !important;
-    min-height: auto !important;
-}
-
-/* 确保主内容区域不限制高度 */
-main {
-    height: auto !important;
-    min-height: auto !important;
-    overflow: visible !important;
-}
-
-/* 过渡动画不影响滚动 */
-.transition-swup-fade {
-    transition: opacity 0.3s ease;
-}
-
+/* 动画效果不影响滚动 */
 .onload-animation-up {
     animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -199,26 +159,27 @@ main {
     }
 }
 
-/* 壁纸透明模式 */
+/* 壁纸透明模式优化 */
 .wallpaper-transparent {
     background-color: transparent;
 }
 
-/* 强制修复滚动问题 - 最后的保障 */
-body {
-    overflow-y: auto !important;
+/* 确保绝对定位元素不影响滚动 */
+.absolute {
+    pointer-events: none;
 }
 
-html {
-    overflow-y: auto !important;
-    height: auto !important;
+/* 修复主容器在加载时的闪烁问题 */
+#main-grid {
+    transition: all 0.3s ease;
 }
 
-/* 确保所有主要容器都不限制高度 */
-#__astro,
-.astro-root,
-.astro-island {
-    display: block;
-    min-height: auto;
-    height: auto;
+/* 优化滚动性能 */
+* {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* 确保内容区域在滚动时保持背景透明 */
+.wallpaper-transparent #content-wrapper {
+    background-color: transparent;
 }
