@@ -1,21 +1,63 @@
-# About This Site
+关于本网站
 
-Twilight is a CMS integrated static blog template built with [Astro](https://astro.build) framework.
+咸林智维博客是基于 Astro 框架构建的技术博客站点，记录学生技术志愿服务组织「咸林智维」的发展历程、技术实践与项目沉淀。本站致力于分享校园设备维护经验、开源工具推荐、技术理念思考，以及组织建设过程中的观察与总结。
 
-::github{repo="Spr-Aachen/Twilight"}
+：：github{repo="WuMengAA/Xianlin-Wisdom-Blog"}
 
+---
 
-## Milestones
+站点特色
 
-- Integrated content management system in [#1](https://github.com/Spr-Aachen/Twilight/pull/1)
-- Seamless wallpaper mode switching in [#2](https://github.com/Spr-Aachen/Twilight/pull/2)
-- Dynamic content container response in [#47](https://github.com/Spr-Aachen/Twilight/pull/47)
-- Seamless page component loading in [#48](https://github.com/Spr-Aachen/Twilight/pull/48)
-- Smart music playback handling in [#49](https://github.com/Spr-Aachen/Twilight/pull/49)
-- Infinite-level navigation system in [#50](https://github.com/Spr-Aachen/Twilight/pull/50)
-- Comprehensive statistics dashboard in [#51](https://github.com/Spr-Aachen/Twilight/pull/51)
-- Low-barrier configuration scheme in [#58](https://github.com/Spr-Aachen/Twilight/pull/58)
-- Dynamic breakpoint handling in [#68](https://github.com/Spr-Aachen/Twilight/pull/68)
-- Advanced content management in [#73](https://github.com/Spr-Aachen/Twilight/pull/73)
-- Nested category support in [#74](https://github.com/Spr-Aachen/Twilight/pull/74)
-- Comprehensive music card plugin in [#81](https://github.com/Spr-Aachen/Twilight/pull/81)
+技术实践
+收录 ClassIsland、ICCCE、VoiceHub 等开源工具的使用教程与部署方案，为校园技术爱好者提供可落地的参考案例。
+
+理念沉淀
+以「熵· 治未病」为核心技术哲学，记录从观察到行动的技术思维，探讨预防性维护在校园场景中的应用。
+
+组织记录
+完整呈现咸林智维从构想到落地的全过程，包括成立公告、会议记录、成员招募、培训材料等第一手资料。
+
+经验共享
+整理常见问题手册、设备维护指南、观察记录方法，让每一次故障都成为可复用的知识积累。
+
+---
+
+站点构成
+
+博客文章
+技术随笔、工具推荐、理念分享、项目总结
+
+专辑专题
+技术工具系列、技术理念系列、项目实践系列、博客专题系列
+
+关于页面
+组织介绍、核心理念、加入方式、联系方式
+
+友情链接
+开源项目、技术社区、合作伙伴
+
+点歌系统
+VoiceHub 校园广播站点歌平台入口
+
+---
+
+技术栈
+
+项目 说明
+框架 Astro 5.0
+语言 TypeScript
+样式 Tailwind CSS
+部署 Vercel
+内容 Markdown / MDX
+评论 Twikoo（待启用）
+统计 Umami
+
+---
+
+维护与更新
+
+本站由咸林智维成员共同维护，内容持续更新中。欢迎通过 QQ 群（979993760）或 GitHub 提交反馈与建议。
+
+---
+
+始于观察，成于行动，沉淀为智慧。
