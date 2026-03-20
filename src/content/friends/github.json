@@ -1,7 +1,7 @@
 {
-  "tags": [],
-  "title": "GitHub",
-  "imgurl": "https://github.githubassets.com/favicons/favicon.svg",
-  "desc": "全球最大的代码托管平台",
-  "siteurl": "https://github.com"
+    "title": "GitHub",
+    "imgurl": "https://github.githubassets.com/favicons/favicon.svg",
+    "desc": "全球最大的代码托管平台",
+    "siteurl": "https://github.com",
+    "tags": ["开发", "社区"]
 }
