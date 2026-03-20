@@ -1,0 +1,23 @@
+{
+    "title": "ClassIsland 推广",
+    "description": "在咸林中学推广ClassIsland课表工具，让教室大屏变成智能课表。",
+    "type": "project",
+    "startDate": "2025-09-15",
+    "endDate": "",
+    "skills": ["ClassIsland", "技术推广"],
+    "achievements": [
+        "安装教程整理",
+        "使用指南编写",
+        "第一批班级试点"
+    ],
+    "links": [
+        {
+            "name": "使用教程",
+            "url": "/posts/classisland-guide",
+            "type": "documentation"
+        }
+    ],
+    "icon": "mdi:calendar-clock",
+    "color": "#10b981",
+    "featured": false
+}
