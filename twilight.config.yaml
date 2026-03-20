@@ -156,19 +156,26 @@ navbar:
         - "Home"
         # 一级导航链接 - 归档
         - "Archive"
-        - # 一级导航链接 - 展览 (自定义)
+        - # 一级导航链接 - 项目 (自定义)
             # 导航名称
-            name: "Exhibition"
+            name: "Projects"
             # 导航链接
-            url: "/exhibition/"
+            url: "/projects/"
             # 导航图标
             icon: "material-symbols:person"
             # 导航描述
-            description: "A collection of my creative works and experiences"
+            description: "Welcome to we projects"
+        - # 一级导航链接 - 历程 (自定义) 
+            # 导航名称
+            name: "Timeline"
+            # 导航链接
+            url: "/timeline/"
+            # 导航图标
+            icon: "material-symbols:person"
+            # 导航描述
+            description: "Welcome to we timeline"
             # 子链接
-            children:
-                - # 二级导航链接 - 项目 (预设)
-                    "Projects"
+            #children:      
                 - # 二级导航链接 - 技能 (预设)
                     "Skills"
                 - # 二级导航链接 - 历程 (预设)
@@ -190,6 +197,7 @@ navbar:
           url: "https://245959623.xyz"
           icon: "material-symbols:music-note"
           description: "VoiceHub校园点歌平台"
+          target: "_blank" #新标签页打开
 
 # 侧边栏配置
 sidebar:
