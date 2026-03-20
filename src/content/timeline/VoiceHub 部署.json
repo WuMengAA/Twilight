@@ -1,0 +1,23 @@
+{
+    "title": "VoiceHub 部署",
+    "description": "部署校园广播站点歌系统，提供22个班级账号，支持网易云、QQ音乐搜索。",
+    "type": "project",
+    "startDate": "2026-03-14",
+    "endDate": "",
+    "skills": ["VoiceHub", "全栈部署"],
+    "achievements": [
+        "站点部署完成",
+        "班级账号创建",
+        "使用说明编写"
+    ],
+    "links": [
+        {
+            "name": "点歌系统",
+            "url": "https://245959623.xyz",
+            "type": "project"
+        }
+    ],
+    "icon": "mdi:music",
+    "color": "#ec489a",
+    "featured": true
+}
