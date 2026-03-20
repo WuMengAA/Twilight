@@ -15,11 +15,11 @@ site:
     # 翻译配置
     translate:
         # 启用翻译功能（中文博客可关闭）
-        enable: false
+        enable: true
         # 翻译服务
         service: "client.edge"
         # 显示语言选择下拉框
-        showSelectTag: false
+        showSelectTag: true
         # 自动检测用户语言
         autoDiscriminate: true
         # 翻译时忽略的 CSS 类名
@@ -144,7 +144,7 @@ site:
 
 # Umami统计配置
 umami:
-    enabled: true
+    enabled: false
     baseUrl: "https://api.umami.is"
     apiKey: ""
     scripts: ""
@@ -158,32 +158,19 @@ navbar:
         - "Archive"
         # 一级导航链接 - 展览
         - name: "Exhibition"
-          url: "/exhibition/"
+          url: "/collections/"
           icon: "material-symbols:palette"
-          description: "技术探索 · 项目沉淀 · 专题合集"
-          children:
-            - name: "技术工具系列"
-              url: "/exhibition/#tools"
-              icon: "material-symbols:build"
-            - name: "技术理念系列"
-              url: "/exhibition/#philosophy"
-              icon: "material-symbols:lightbulb"
-            - name: "项目实践系列"
-              url: "/exhibition/#practice"
-              icon: "material-symbols:school"
-            - name: "博客专题系列"
-              url: "/exhibition/#blog"
-              icon: "material-symbols:article"
+          description: "collections"
 
         # 一级导航链接 - 好友
         - "Friends"
         # 一级导航链接 - 关于
         - "About"
         # 一级导航链接 - 点歌系统
-        - name: "点歌系统"
+        - name: "Voice-hub"
           url: "https://245959623.xyz"
           icon: "material-symbols:music-note"
-          description: "VoiceHub · 校园点歌平台"
+          description: "VoiceHub校园点歌平台"
 
 # 侧边栏配置
 sidebar:
