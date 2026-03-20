@@ -157,6 +157,7 @@ navbar:
         # 一级导航链接 - 归档
         - "Archive"
         - "Projects"
+        - "albums"
         - "Timeline" 
         # 一级导航链接 - 好友
         - "Friends"
