@@ -251,7 +251,7 @@ footer:
 particle:
     enable: true
     # 粒子数量
-    particleNum: 128
+    particleNum: 24
     limitTimes: -1
     size:
         min: 0.3
@@ -272,7 +272,7 @@ particle:
 
 # 音乐播放器配置
 musicPlayer:
-    enable: true
+    enable: false
     mode: "meting"
     meting:
         meting_api: "https://api.i-meto.com/meting/api"
@@ -288,11 +288,11 @@ musicPlayer:
               url: "assets/music/深海之息.m4a"
               lrc: "assets/music/深海之息.lrc"
               duration: 146
-    autoplay: true
+    autoplay: false
 
 # 看板娘配置
 pio:
-    enable: true
+    enable: false
     models:
         - "/pio/models/pio/model.json"
     # 改为右侧避免遮挡左侧侧边栏
