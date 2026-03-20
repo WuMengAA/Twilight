@@ -50,13 +50,31 @@ export default defineConfig({
     trailingSlash: "always",
     output: "server",
     adapter: adapter,
+import { envField } from 'astro/config';
+
+export default defineConfig({
+    site: siteConfig.siteURL,
+    base: "/",
+    trailingSlash: "always",
+    output: 'server',
+    adapter: adapter,
+    
     env: {
         schema: {
-            OAUTH_GITHUB_CLIENT_ID:Ov23liI8qLm6YjUqQyMh process.env.OAUTH_GITHUB_CLIENT_ID,
-            OAUTH_GITHUB_CLIENT_SECRET:dcbc9e4d957e4ffa648590e5455a6b228c0389a0 process.env.OAUTH_GITHUB_CLIENT_SECRET,
+            OAUTH_GITHUB_CLIENT_ID: envField.string({
+                context: 'server',
+                access: 'secret',
+                optional: false,
+            }),
+            OAUTH_GITHUB_CLIENT_SECRET: envField.string({
+                context: 'server',
+                access: 'secret',
+                optional: false,
+            }),
         }
     },
     
+
     integrations: [
         decapCmsOauth({
             decapCMSVersion: "3.9.0",
