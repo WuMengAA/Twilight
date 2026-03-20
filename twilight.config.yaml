@@ -208,13 +208,13 @@ profile:
       url: "https://github.com/WuMengAA"
     - name: "QQ群"
       icon: "fa6-brands:qq"
-      url: "https://qun.qq.com/universal-share/share?ac=1&authKey=你的完整密钥"
+      url: "https://qm.qq.com/q/CGyHwuq44E"
     - name: "哔哩哔哩"
       icon: "fa6-brands:bilibili"
       url: "https://space.bilibili.com/3461562041895547"
     - name: "点歌系统"
       icon: "material-symbols:music-note"
-      url: "https://245959623.xyz"
+      url: "voicehub/"
 
 # 公告配置
 announcement:
@@ -244,14 +244,14 @@ post:
 
 # 页脚配置
 footer:
-    enable: false
-    customHtml: ""
+    enable: true
+    customHtml: "v0.0.1"
 
 # 粒子特效配置
 particle:
     enable: true
-    # 粒子数量（从12增加到24）
-    particleNum: 24
+    # 粒子数量
+    particleNum: 128
     limitTimes: -1
     size:
         min: 0.3
