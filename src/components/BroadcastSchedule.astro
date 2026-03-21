@@ -1,0 +1,310 @@
+---
+// 广播排期组件 - 获取并显示 VoiceHub 歌曲排期
+import { Icon } from "astro-icon/components";
+import { onMount } from "solid-js";
+---
+
+<div id="broadcast-schedule" class="broadcast-schedule">
+    <div class="schedule-header">
+        <h3>
+            <Icon name="material-symbols:radio" class="schedule-icon" />
+            VoiceHub 校园广播 · 本周热播
+        </h3>
+        <a href="https://245959623.xyz" target="_blank" class="schedule-link">
+            前往点歌 <Icon name="material-symbols:arrow-forward" />
+        </a>
+    </div>
+    
+    <div class="schedule-content" id="schedule-content">
+        <div class="loading-spinner">加载排期中...</div>
+    </div>
+    
+    <div class="schedule-footer">
+        <span>🎵 点歌系统：</span>
+        <span>班级账号 Seewo101-122，密码 xlzwSeewo101</span>
+    </div>
+</div>
+
+<style>
+    .broadcast-schedule {
+        background: linear-gradient(135deg, rgba(15, 25, 35, 0.95), rgba(10, 20, 30, 0.98));
+        border-radius: 20px;
+        padding: 1.25rem;
+        margin: 1rem 0;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        backdrop-filter: blur(8px);
+        transition: all 0.3s ease;
+    }
+    
+    .broadcast-schedule:hover {
+        border-color: rgba(59, 130, 246, 0.6);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    }
+    
+    .schedule-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    
+    .schedule-header h3 {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: #b8d0e0;
+        margin: 0;
+    }
+    
+    .schedule-icon {
+        font-size: 1.3rem;
+        color: #3b82f6;
+    }
+    
+    .schedule-link {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        font-size: 0.85rem;
+        color: #3b82f6;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    
+    .schedule-link:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+    }
+    
+    .schedule-content {
+        min-height: 200px;
+        max-height: 400px;
+        overflow-y: auto;
+    }
+    
+    .loading-spinner {
+        text-align: center;
+        padding: 2rem;
+        color: #7a8a9a;
+    }
+    
+    .song-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(42, 58, 74, 0.5);
+        transition: background 0.2s;
+    }
+    
+    .song-item:hover {
+        background: rgba(59, 130, 246, 0.05);
+        padding-left: 0.5rem;
+    }
+    
+    .song-info {
+        flex: 1;
+    }
+    
+    .song-title {
+        font-weight: 600;
+        color: #e0e0e0;
+        margin-bottom: 0.25rem;
+    }
+    
+    .song-artist {
+        font-size: 0.8rem;
+        color: #9aaebf;
+    }
+    
+    .song-meta {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-size: 0.75rem;
+    }
+    
+    .song-requester {
+        background: rgba(59, 130, 246, 0.15);
+        padding: 0.2rem 0.5rem;
+        border-radius: 12px;
+        color: #3b82f6;
+    }
+    
+    .song-date {
+        color: #6a7a8a;
+    }
+    
+    .song-votes {
+        display: flex;
+        align-items: center;
+        gap: 0.2rem;
+        color: #f59e0b;
+    }
+    
+    .schedule-footer {
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+        border-top: 1px solid rgba(42, 58, 74, 0.5);
+        font-size: 0.7rem;
+        color: #6a7a8a;
+        text-align: center;
+    }
+    
+    /* 按日期分组 */
+    .date-group {
+        margin-bottom: 1rem;
+    }
+    
+    .date-title {
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: #3b82f6;
+        padding: 0.5rem 0;
+        margin-top: 0.5rem;
+        border-left: 3px solid #3b82f6;
+        padding-left: 0.75rem;
+    }
+    
+    .date-title:first-child {
+        margin-top: 0;
+    }
+    
+    /* 滚动条样式 */
+    .schedule-content::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    .schedule-content::-webkit-scrollbar-track {
+        background: rgba(42, 58, 74, 0.3);
+        border-radius: 4px;
+    }
+    
+    .schedule-content::-webkit-scrollbar-thumb {
+        background: #3b82f6;
+        border-radius: 4px;
+    }
+    
+    /* 空状态 */
+    .empty-state {
+        text-align: center;
+        padding: 2rem;
+        color: #7a8a9a;
+    }
+    
+    /* 错误状态 */
+    .error-state {
+        text-align: center;
+        padding: 1rem;
+        color: #f87171;
+    }
+</style>
+
+<script>
+    const API_URL = 'https://245959623.xyz/api/songs/public';
+    
+    async function fetchSchedule() {
+        const container = document.getElementById('schedule-content');
+        if (!container) return;
+        
+        try {
+            container.innerHTML = '<div class="loading-spinner">🎵 正在获取排期...</div>';
+            
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            
+            const data = await response.json();
+            
+            if (!data || data.length === 0) {
+                container.innerHTML = '<div class="empty-state">📻 暂无排期，快去点歌吧！</div>';
+                return;
+            }
+            
+            // 按日期分组
+            const groupedByDate: Record<string, any[]> = {};
+            data.forEach((item: any) => {
+                const date = item.playDate;
+                if (!groupedByDate[date]) groupedByDate[date] = [];
+                groupedByDate[date].push(item);
+            });
+            
+            // 按日期排序（最新的在前面）
+            const sortedDates = Object.keys(groupedByDate).sort().reverse();
+            
+            // 渲染 HTML
+            let html = '';
+            for (const date of sortedDates) {
+                const songs = groupedByDate[date];
+                // 按 sequence 排序
+                songs.sort((a, b) => a.sequence - b.sequence);
+                
+                html += `<div class="date-group">`;
+                html += `<div class="date-title">📅 ${date}</div>`;
+                
+                for (const item of songs) {
+                    const song = item.song;
+                    const requester = song.requester || '匿名';
+                    const voteCount = song.voteCount || 0;
+                    
+                    html += `
+                        <div class="song-item">
+                            <div class="song-info">
+                                <div class="song-title">${escapeHtml(song.title)}</div>
+                                <div class="song-artist">${escapeHtml(song.artist)}</div>
+                            </div>
+                            <div class="song-meta">
+                                <span class="song-requester">🎤 ${escapeHtml(requester)}</span>
+                                <span class="song-votes">👍 ${voteCount}</span>
+                                <span class="song-date">#${item.sequence}</span>
+                            </div>
+                        </div>
+                    `;
+                }
+                html += `</div>`;
+            }
+            
+            container.innerHTML = html;
+            
+        } catch (error) {
+            console.error('获取排期失败:', error);
+            container.innerHTML = `
+                <div class="error-state">
+                    ⚠️ 无法获取排期数据<br>
+                    <small>请稍后重试或直接访问 <a href="https://245959623.xyz" target="_blank">VoiceHub</a></small>
+                </div>
+            `;
+        }
+    }
+    
+    // 简单的 XSS 防护
+    function escapeHtml(str: string): string {
+        if (!str) return '';
+        return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+    }
+    
+    // 页面加载时获取数据
+    if (typeof window !== 'undefined') {
+        // 立即执行
+        fetchSchedule();
+        
+        // 每 30 秒刷新一次
+        setInterval(fetchSchedule, 30000);
+        
+        // 监听 Swup 页面切换后重新获取
+        document.addEventListener('swup:contentReplaced', fetchSchedule);
+        document.addEventListener('astro:page-load', fetchSchedule);
+    }
+</script>
