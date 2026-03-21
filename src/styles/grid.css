@@ -1,27 +1,13 @@
 /* grid.css - 完整修改版 */
 
-/* 当banner被禁用时的布局样式 - 修改为相对定位 */
-.no-banner-layout {
-    margin-top: 5.5rem !important;
-    position: relative !important;
-    min-height: calc(100vh - 5.5rem) !important;
-}
+/* ============================================
+   核心布局修复 - 解决滚动问题
+   ============================================ */
 
-/* 修复banner模式下的主容器样式 */
-.relative.w-full.z-30 {
-    position: relative !important;
-    min-height: 100vh;
-}
-
-/* 确保主内容区域有足够高度 */
-#main-grid {
-    min-height: calc(100vh - 200px);
-    padding-bottom: 2rem;
-}
-
-/* 修复滚动条问题 */
+/* 全局滚动设置 */
 html {
     overflow-y: auto !important;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
@@ -29,6 +15,26 @@ body {
     overflow-x: hidden;
     min-height: 100vh;
     position: relative;
+}
+
+/* 当banner被禁用时的布局样式 - 修改为相对定位 */
+.no-banner-layout {
+    margin-top: 5.5rem !important;
+    position: relative !important;
+    min-height: calc(100vh - 5.5rem) !important;
+}
+
+/* 主容器基础样式 */
+.relative.w-full.z-30,
+#main-container {
+    position: relative !important;
+    min-height: 100vh;
+}
+
+/* 确保主网格有足够高度 */
+#main-grid {
+    min-height: calc(100vh - 200px);
+    padding-bottom: 2rem;
 }
 
 /* 侧边栏粘性定位优化 */
@@ -40,6 +46,33 @@ body {
     height: fit-content;
     max-height: calc(100vh - 7rem);
     overflow-y: auto;
+}
+
+/* 侧边栏滚动条美化 */
+#left-sidebar::-webkit-scrollbar,
+#right-sidebar::-webkit-scrollbar,
+#middle-sidebar::-webkit-scrollbar {
+    width: 4px;
+}
+
+#left-sidebar::-webkit-scrollbar-track,
+#right-sidebar::-webkit-scrollbar-track,
+#middle-sidebar::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+#left-sidebar::-webkit-scrollbar-thumb,
+#right-sidebar::-webkit-scrollbar-thumb,
+#middle-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 4px;
+}
+
+#left-sidebar::-webkit-scrollbar-thumb:hover,
+#right-sidebar::-webkit-scrollbar-thumb:hover,
+#middle-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 /* 隐藏已收起横幅或非横幅模式时的图片版权描述 */
@@ -64,12 +97,18 @@ body {
     transition: opacity 0.3s ease;
 }
 
-/* 手机端无侧边栏布局优化 */
+/* ============================================
+   响应式设计 - 移动端适配
+   ============================================ */
+
+/* 平板端适配 */
 @media (max-width: 768px) {
+    /* 移动端无侧边栏布局优化 */
     .mobile-no-sidebar {
         display: block !important;
         width: 100% !important;
     }
+    
     .mobile-no-sidebar main {
         width: 100% !important;
         max-width: 100% !important;
@@ -77,6 +116,7 @@ body {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
+    
     .mobile-no-sidebar #content-wrapper {
         width: 100% !important;
         max-width: 100% !important;
@@ -85,65 +125,94 @@ body {
 
     /* 修复双侧边栏模式在移动端的布局问题 */
     .mobile-both-sidebar {
-        /* 确保在移动端使用单列布局 */
         grid-template-columns: 1fr !important;
-        /* 确保左右padding对称 */
         padding-left: 1rem !important;
         padding-right: 1rem !important;
     }
+    
     /* 确保移动端主内容区域居中且全宽 */
     .mobile-both-sidebar main {
         grid-column: 1 / -1 !important;
         width: 100% !important;
         margin: 0 auto !important;
     }
+    
     /* 移动端footer也要居中 */
     .mobile-both-sidebar .footer {
         grid-column: 1 / -1 !important;
     }
     
     /* 移动端主容器边距调整 */
-    .relative.w-full.z-30 {
+    .relative.w-full.z-30,
+    #main-container {
         margin-top: 4rem !important;
     }
     
     .no-banner-layout {
         margin-top: 4rem !important;
     }
+    
+    /* 移动端侧边栏调整 */
+    #left-sidebar,
+    #right-sidebar,
+    #middle-sidebar {
+        top: 4rem;
+        max-height: calc(100vh - 5rem);
+    }
 }
 
-/* 小屏手机无侧边栏布局优化 */
+/* 小屏手机适配 */
 @media (max-width: 512px) {
     /* 修复双侧边栏模式在移动端的布局问题 */
     .mobile-both-sidebar {
-        /* 确保在移动端使用单列布局 */
         grid-template-columns: 1fr !important;
-        /* 确保左右padding对称 */
         padding-left: 0.75rem !important;
         padding-right: 0.75rem !important;
     }
+    
     /* 确保移动端主内容区域居中且全宽 */
     .mobile-both-sidebar main {
         grid-column: 1 / -1 !important;
         width: 100% !important;
         margin: 0 auto !important;
     }
+    
     /* 移动端footer也要居中 */
     .mobile-both-sidebar .footer {
         grid-column: 1 / -1 !important;
     }
     
     /* 小屏手机进一步缩小边距 */
-    .relative.w-full.z-30 {
+    .relative.w-full.z-30,
+    #main-container {
         margin-top: 3.5rem !important;
     }
     
     .no-banner-layout {
         margin-top: 3.5rem !important;
     }
+    
+    /* 小屏手机网格内边距调整 */
+    #main-grid {
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+    }
 }
 
-/* 动画效果不影响滚动 */
+/* 超大屏幕优化 */
+@media (min-width: 1920px) {
+    #main-grid {
+        max-width: 1400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* ============================================
+   动画效果
+   ============================================ */
+
+/* 淡入上浮动画 */
 .onload-animation-up {
     animation: fadeInUp 0.6s ease-out forwards;
 }
@@ -159,10 +228,22 @@ body {
     }
 }
 
+/* ============================================
+   壁纸透明模式
+   ============================================ */
+
 /* 壁纸透明模式优化 */
 .wallpaper-transparent {
     background-color: transparent;
 }
+
+.wallpaper-transparent #content-wrapper {
+    background-color: transparent;
+}
+
+/* ============================================
+   辅助功能
+   ============================================ */
 
 /* 确保绝对定位元素不影响滚动 */
 .absolute {
@@ -174,12 +255,61 @@ body {
     transition: all 0.3s ease;
 }
 
-/* 优化滚动性能 */
-* {
-    -webkit-overflow-scrolling: touch;
-}
-
 /* 确保内容区域在滚动时保持背景透明 */
 .wallpaper-transparent #content-wrapper {
     background-color: transparent;
+}
+
+/* 打印样式优化 */
+@media print {
+    .no-banner-layout {
+        margin-top: 0 !important;
+    }
+    
+    #left-sidebar,
+    #right-sidebar,
+    #middle-sidebar {
+        display: none !important;
+    }
+    
+    #main-grid {
+        display: block !important;
+    }
+}
+
+/* 深色模式优化 */
+@media (prefers-color-scheme: dark) {
+    #left-sidebar::-webkit-scrollbar-track,
+    #right-sidebar::-webkit-scrollbar-track,
+    #middle-sidebar::-webkit-scrollbar-track {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    #left-sidebar::-webkit-scrollbar-thumb,
+    #right-sidebar::-webkit-scrollbar-thumb,
+    #middle-sidebar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+    }
+    
+    #left-sidebar::-webkit-scrollbar-thumb:hover,
+    #right-sidebar::-webkit-scrollbar-thumb:hover,
+    #middle-sidebar::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* 性能优化 - 减少重绘 */
+.transform-gpu {
+    transform: translateZ(0);
+    will-change: transform;
+}
+
+/* 平滑滚动优化 */
+.smooth-scroll {
+    scroll-behavior: smooth;
+}
+
+/* 防止内容抖动 */
+.content-stable {
+    contain: layout style paint;
 }
