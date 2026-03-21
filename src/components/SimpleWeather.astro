@@ -1,0 +1,57 @@
+---
+const apiKey = import.meta.env.PUBLIC_WEATHER_API_KEY;
+const city = "华县";
+
+let weather = null;
+
+if (apiKey) {
+    try {
+        const res = await fetch(
+            `https://devapi.qweather.com/v7/weather/now?location=101010100&key=${apiKey}`
+        );
+        const data = await res.json();
+        if (data.code === "200") {
+            weather = {
+                temp: data.now.temp,
+                text: data.now.text,
+                icon: data.now.icon
+            };
+        }
+    } catch (e) {
+        console.error(e);
+    }
+}
+---
+
+<div class="simple-weather">
+    {weather ? (
+        <div class="weather">
+            <img src={`https://cdn.qweather.com/icons/${weather.icon}.png`} width="32" height="32" />
+            <span class="temp">{weather.temp}°C</span>
+            <span class="text">{weather.text}</span>
+        </div>
+    ) : (
+        <div class="weather">加载中...</div>
+    )}
+</div>
+
+<style>
+.simple-weather {
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+.weather {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.temp {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.text {
+    font-size: 0.8rem;
+}
+</style>
