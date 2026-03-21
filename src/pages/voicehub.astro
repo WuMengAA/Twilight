@@ -1,47 +1,169 @@
 ---
-// 页面元数据
+// 咸中广播导航页面
+import Layout from "@layouts/base.astro";
 ---
 
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VoiceHub 点歌系统 | 咸林智维</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
-            overflow: hidden;
-            background-color: #0a1929;
+<Layout title="咸中广播 | VoiceHub 校园广播">
+    <div class="voicehub-nav-page">
+        <div class="hero-section">
+            <h1 class="hero-title">
+                <span class="icon">🎵</span>
+                咸中广播
+            </h1>
+            <p class="hero-subtitle">VoiceHub · 让音乐传递心声</p>
+        </div>
+        
+        <div class="nav-cards">
+            <a href="/voicehub-player" class="nav-card">
+                <div class="card-icon">🎤</div>
+                <h3>点歌系统</h3>
+                <p>搜索歌曲、投票互动、查看排期</p>
+                <span class="card-tip">立即点歌 →</span>
+            </a>
+            
+            <a href="/broadcast" class="nav-card">
+                <div class="card-icon">📻</div>
+                <h3>本周热播</h3>
+                <p>实时查看歌曲排期和播放列表</p>
+                <span class="card-tip">查看排期 →</span>
+            </a>
+            
+            <a href="/voicehub-guide" class="nav-card">
+                <div class="card-icon">📖</div>
+                <h3>点歌指南</h3>
+                <p>使用教程、班级账号、常见问题</p>
+                <span class="card-tip">了解详情 →</span>
+            </a>
+            
+            <a href="/voicehub-accounts" class="nav-card">
+                <div class="card-icon">👥</div>
+                <h3>班级账号</h3>
+                <p>Seewo101-122 账号密码一览</p>
+                <span class="card-tip">查看账号 →</span>
+            </a>
+        </div>
+        
+        <div class="info-banner">
+            <p>🎉 22个班级账号已开通 | 初始密码: xlzwSeewo101</p>
+            <p class="small">首次登录请及时修改密码</p>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .voicehub-nav-page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        min-height: calc(100vh - 200px);
+    }
+    
+    .hero-section {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    
+    .hero-title .icon {
+        background: none;
+        -webkit-background-clip: unset;
+        color: inherit;
+    }
+    
+    .hero-subtitle {
+        color: #7a8a9a;
+        font-size: 1.1rem;
+    }
+    
+    .nav-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    
+    .nav-card {
+        background: rgba(30, 40, 50, 0.6);
+        border-radius: 20px;
+        padding: 1.75rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        backdrop-filter: blur(4px);
+    }
+    
+    .nav-card:hover {
+        transform: translateY(-6px);
+        border-color: #3b82f6;
+        background: rgba(30, 40, 50, 0.8);
+        box-shadow: 0 20px 30px -15px rgba(0, 0, 0, 0.3);
+    }
+    
+    .card-icon {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .nav-card h3 {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #b8d0e0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .nav-card p {
+        font-size: 0.9rem;
+        color: #9aaebf;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+    }
+    
+    .card-tip {
+        font-size: 0.85rem;
+        color: #3b82f6;
+        font-weight: 500;
+    }
+    
+    .info-banner {
+        background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.1));
+        border-radius: 16px;
+        padding: 1.25rem;
+        text-align: center;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    
+    .info-banner p {
+        margin: 0;
+        color: #b8d0e0;
+    }
+    
+    .info-banner .small {
+        font-size: 0.8rem;
+        color: #7a8a9a;
+        margin-top: 0.5rem;
+    }
+    
+    @media (max-width: 768px) {
+        .voicehub-nav-page {
+            padding: 1rem;
         }
-        .voicehub-container {
-            width: 100%;
-            height: 100vh;
-            border: none;
+        .hero-title {
+            font-size: 1.8rem;
         }
-        .loading {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #b8d0e0;
-            font-family: system-ui, sans-serif;
-            z-index: 999;
-            background: rgba(10, 25, 41, 0.9);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-size: 1rem;
+        .nav-cards {
+            grid-template-columns: 1fr;
         }
-    </style>
-</head>
-<body>
-    <div class="loading" id="loading">🎵 加载 VoiceHub ...</div>
-    <iframe 
-        src="https://245959623.xyz" 
-        class="voicehub-container"
-        onload="document.getElementById('loading').style.display = 'none'"
-    ></iframe>
-</body>
-</html>
+        .nav-card {
+            padding: 1.25rem;
+        }
+    }
+</style>
