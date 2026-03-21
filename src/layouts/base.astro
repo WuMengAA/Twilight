@@ -219,10 +219,6 @@ const umamiScripts = umamiConfig.scripts || ""; // 获取Umami scripts配置
         <link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
         <!-- Umami Analytics -->
         {umamiEnabled && umamiScripts && <Fragment set:html={umamiScripts} />}
-       <!-- VoiceHub 模态框 -->
-        <VoiceHubModal />
-        <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
-        <div id="page-height-extend" class="hidden h-[300vh]"></div>
     </head>
 
     <body class=" min-h-screen " class:list={[{"is-home": isHomePage, "enable-banner": enableBanner}]}
@@ -239,6 +235,10 @@ const umamiScripts = umamiConfig.scripts || ""; // 获取Umami scripts配置
         {musicPlayerConfig.enable && <MusicPlayer client:idle />}
         <!-- Pio 看板娘组件 - 如果启用了侧边栏，可能需要调整 z-index -->
         {pioConfig.enable && <Pio client:idle />}
+        <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
+        <div id="page-height-extend" class="hidden h-[300vh]"></div>
+       <!-- VoiceHub 模态框 -->
+        <VoiceHubModal />
         <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
         <div id="page-height-extend" class="hidden h-[300vh]"></div>
     </body>
