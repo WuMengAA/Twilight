@@ -159,20 +159,23 @@ navbar:
         - "Projects"
         - "Timeline" 
         # 一级导航链接 - 点歌系统
-        - name: "VoiceHub"                          # ✅ 新增一级导航
-          url: "#voicehub-modal"
-          icon: "material-symbols:music-note"
-          description: "VoiceHub 校园广播点歌系统"
-          children:                                  # ✅ 附属子导航
-            - name: "本周热播"
-              url: "/broadcast/"
-              icon: "material-symbols:queue-music"
-            - name: "点歌指南"
-              url: "/voicehub-guide/"
-              icon: "material-symbols:help-outline"
-            - name: "班级账号"
-              url: "/voicehub-accounts/"
-              icon: "material-symbols:groups"
+        - name: "VoiceHub"
+         url: "#voicehub-modal"
+         icon: "material-symbols:music-note"
+         description: "VoiceHub 校园广播点歌系统"
+         children:
+           - name: "点歌系统"
+             url: "/voicehub/"
+             icon: "material-symbols:play-arrow"
+           - name: "本周热播"
+             url: "/broadcast/"
+             icon: "material-symbols:queue-music"
+           - name: "点歌指南"
+             url: "/voicehub-guide/"
+             icon: "material-symbols:help-outline"
+           - name: "班级账号"
+             url: "/voicehub-accounts/"
+             icon: "material-symbols:groups"
         # 一级导航链接 - 好友
         - "Friends"
         # 一级导航链接 - 关于
