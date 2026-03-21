@@ -235,9 +235,7 @@ const umamiScripts = umamiConfig.scripts || ""; // 获取Umami scripts配置
         {musicPlayerConfig.enable && <MusicPlayer client:idle />}
         <!-- Pio 看板娘组件 - 如果启用了侧边栏，可能需要调整 z-index -->
         {pioConfig.enable && <Pio client:idle />}
-        <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
-        <div id="page-height-extend" class="hidden h-[300vh]"></div>
-       <!-- VoiceHub 模态框 -->
+        <!-- VoiceHub 模态框 -->
         <VoiceHubModal />
         <!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
         <div id="page-height-extend" class="hidden h-[300vh]"></div>
@@ -559,5 +557,48 @@ if (typeof window !== 'undefined') {
             document.addEventListener('DOMContentLoaded', onPageLoaded);
         }
     }
+}
+
+// ============================================
+// VoiceHub 模态框拦截逻辑
+// ============================================
+
+function initVoiceHubModalTrigger() {
+    // 查找所有指向 #voicehub-modal 的链接
+    const modalLinks = document.querySelectorAll('a[href="#voicehub-modal"]');
+    
+    modalLinks.forEach(link => {
+        // 避免重复绑定
+        if (link.dataset.voicehubBound === 'true') return;
+        link.dataset.voicehubBound = 'true';
+        
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            // 调用 VoiceHubModal 组件的打开方法
+            if (typeof window.openVoiceHubModal === 'function') {
+                window.openVoiceHubModal();
+            } else {
+                console.warn('VoiceHub modal not initialized');
+            }
+        });
+    });
+}
+
+// 页面加载时初始化
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initVoiceHubModalTrigger);
+} else {
+    initVoiceHubModalTrigger();
+}
+
+// Swup 页面切换后重新初始化（因为导航可能会重新渲染）
+if (window.swup?.hooks) {
+    window.swup.hooks.on('content:replace', initVoiceHubModalTrigger);
+} else {
+    document.addEventListener('swup:enable', () => {
+        if (window.swup?.hooks) {
+            window.swup.hooks.on('content:replace', initVoiceHubModalTrigger);
+        }
+    });
 }
 </script>
