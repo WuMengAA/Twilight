@@ -1,0 +1,116 @@
+---
+import Layout from "@layouts/Layout.astro";
+import BroadcastSchedule from "@components/BroadcastSchedule.astro";
+---
+
+<Layout title="本周热播 | VoiceHub 校园广播">
+    <div class="broadcast-page">
+        <div class="page-header">
+            <h1 class="page-title">
+                <span class="icon">🎵</span>
+                VoiceHub 本周热播
+            </h1>
+            <p class="page-subtitle">实时更新 · 校园歌曲排期</p>
+        </div>
+        
+        <BroadcastSchedule />
+        
+        <div class="action-buttons">
+            <a href="https://245959623.xyz" target="_blank" class="btn-primary">
+                🎤 前往点歌
+            </a>
+            <a href="/voicehub-guide/" class="btn-secondary">
+                📖 点歌指南
+            </a>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .broadcast-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 1.5rem;
+    }
+    
+    .page-header {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    .page-title {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    
+    .page-title .icon {
+        background: none;
+        -webkit-background-clip: unset;
+        color: inherit;
+    }
+    
+    .page-subtitle {
+        color: #7a8a9a;
+    }
+    
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-secondary {
+        background: rgba(59, 130, 246, 0.15);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    
+    .btn-secondary:hover {
+        background: rgba(59, 130, 246, 0.25);
+        transform: translateY(-2px);
+    }
+    
+    @media (max-width: 768px) {
+        .broadcast-page {
+            padding: 1rem;
+        }
+        .page-title {
+            font-size: 1.5rem;
+        }
+        .action-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        .btn-primary, .btn-secondary {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
