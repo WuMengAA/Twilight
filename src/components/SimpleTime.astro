@@ -1,0 +1,35 @@
+<div class="simple-time" id="simple-time">
+    <div class="time">--:--:--</div>
+    <div class="date">----/--/--</div>
+</div>
+
+<script>
+function updateTime() {
+    const now = new Date();
+    const time = now.toLocaleTimeString('zh-CN');
+    const date = now.toLocaleDateString('zh-CN');
+    
+    document.querySelector('#simple-time .time').textContent = time;
+    document.querySelector('#simple-time .date').textContent = date;
+}
+
+updateTime();
+setInterval(updateTime, 1000);
+</script>
+
+<style>
+.simple-time {
+    text-align: center;
+    padding: 0.5rem;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+}
+.time {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+.date {
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+</style>
