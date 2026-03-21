@@ -1,0 +1,69 @@
+---
+// 点歌系统 - 全屏播放页面
+---
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点歌系统 | 咸中广播</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            background-color: #0a1929;
+        }
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-family: system-ui, sans-serif;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover {
+            background: rgba(59, 130, 246, 0.8);
+        }
+        .voicehub-container {
+            width: 100%;
+            height: 100vh;
+            border: none;
+        }
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b8d0e0;
+            font-family: system-ui, sans-serif;
+            z-index: 999;
+            background: rgba(10, 25, 41, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <a href="/voicehub" class="back-btn">← 返回导航</a>
+    <div class="loading" id="loading">🎵 加载点歌系统...</div>
+    <iframe 
+        src="https://245959623.xyz" 
+        class="voicehub-container"
+        onload="document.getElementById('loading').style.display = 'none'"
+        title="VoiceHub 点歌系统"
+    ></iframe>
+</body>
+</html>
