@@ -21,14 +21,27 @@
             height: 100vh;
             border: none;
         }
+        .loading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #b8d0e0;
+            font-family: system-ui, sans-serif;
+            z-index: 999;
+            background: rgba(10, 25, 41, 0.9);
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
     </style>
 </head>
 <body>
-    <div class="loading" id="loading">加载中...</div>
+    <div class="loading" id="loading">🎵 加载 VoiceHub 点歌系统...</div>
     <iframe 
         src="https://245959623.xyz" 
         class="voicehub-container"
-        @load="document.getElementById('loading').style.display = 'none'"
+        onload="document.getElementById('loading').style.display = 'none'"
     ></iframe>
 </body>
 </html>
