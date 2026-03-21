@@ -1,0 +1,210 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="点歌指南 | VoiceHub 校园广播">
+    <div class="guide-page">
+        <h1>🎵 VoiceHub 点歌指南</h1>
+        
+        <div class="guide-section">
+            <h2>📱 如何使用点歌系统</h2>
+            <div class="steps">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <div>
+                        <strong>访问网站</strong>
+                        <p>打开 <a href="https://245959623.xyz" target="_blank">https://245959623.xyz</a></p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <div>
+                        <strong>登录账号</strong>
+                        <p>班级账号：Seewo101 ~ Seewo122<br>初始密码：xlzwSeewo101（101对应102类推）</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <div>
+                        <strong>搜索歌曲</strong>
+                        <p>支持网易云、QQ音乐、Bilibili 一键搜索</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">4</span>
+                    <div>
+                        <strong>提交点歌</strong>
+                        <p>点击“点歌”按钮，等待广播站审核</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <span class="step-num">5</span>
+                    <div>
+                        <strong>查看排期</strong>
+                        <p>歌曲被选中后会收到通知，可在“本周热播”查看播放时间</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="guide-section">
+            <h2>🎯 功能说明</h2>
+            <table class="feature-table">
+                <tr><th>功能</th><th>说明</th></tr>
+                <tr><td>点歌系统</td><td>多平台搜索、歌曲投票、联合投稿</td></tr>
+                <tr><td>排期管理</td><td>拖拽排期、时段设置、草稿保存</td></tr>
+                <tr><td>班级账号</td><td>22个班级账号，独立管理</td></tr>
+                <tr><td>通知系统</td><td>歌曲选中通知、系统公告实时推送</td></tr>
+            </table>
+        </div>
+        
+        <div class="guide-section">
+            <h2>⚠️ 注意事项</h2>
+            <ul>
+                <li>请遵守校园广播管理规定，不点播违规歌曲</li>
+                <li>首次登录请及时修改密码</li>
+                <li>如有问题可通过班级群联系管理员</li>
+            </ul>
+        </div>
+        
+        <div class="action-links">
+            <a href="https://245959623.xyz" target="_blank" class="btn-primary">🎤 立即点歌</a>
+            <a href="/broadcast/" class="btn-secondary">📻 查看热播</a>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .guide-page {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
+    }
+    
+    .guide-section {
+        background: rgba(30, 40, 50, 0.5);
+        border-radius: 20px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border: 1px solid #2a3a4a;
+    }
+    
+    .guide-section h2 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        color: #b8d0e0;
+        border-left: 3px solid #3b82f6;
+        padding-left: 0.75rem;
+    }
+    
+    .steps {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .step {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+    
+    .step-num {
+        width: 32px;
+        height: 32px;
+        background: #3b82f6;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        flex-shrink: 0;
+    }
+    
+    .step strong {
+        display: block;
+        margin-bottom: 0.25rem;
+        color: #b8d0e0;
+    }
+    
+    .step p {
+        margin: 0;
+        color: #9aaebf;
+        font-size: 0.9rem;
+    }
+    
+    .step a {
+        color: #3b82f6;
+        text-decoration: none;
+    }
+    
+    .feature-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    
+    .feature-table th, .feature-table td {
+        padding: 0.75rem;
+        text-align: left;
+        border-bottom: 1px solid #2a3a4a;
+    }
+    
+    .feature-table th {
+        color: #3b82f6;
+        width: 120px;
+    }
+    
+    .action-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1.5rem;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-primary {
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+    }
+    
+    .btn-secondary {
+        background: rgba(59, 130, 246, 0.15);
+        color: #3b82f6;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+    
+    @media (max-width: 768px) {
+        .action-links {
+            flex-direction: column;
+        }
+        .btn-primary, .btn-secondary {
+            justify-content: center;
+        }
+        .feature-table th, .feature-table td {
+            display: block;
+        }
+        .feature-table th {
+            width: auto;
+        }
+    }
+</style>
