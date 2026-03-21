@@ -160,7 +160,7 @@ navbar:
         - "Timeline" 
         # 一级导航链接 - 点歌系统
         - name: "VoiceHub"
-          url: "javascript:void(0)"
+          url: "#voicehub-modal"
           icon: "material-symbols:music-note"
           description: "VoiceHub 校园广播点歌系统"
           children:
