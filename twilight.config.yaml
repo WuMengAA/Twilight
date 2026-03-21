@@ -159,14 +159,14 @@ navbar:
     - "Projects"
     - "Timeline"
     
-    # 一级导航链接 - 点歌系统（带下拉菜单）
+    # 一级导航链接 - 点歌系统
     - name: "咸中广播"
       url: "/voicehub"
       icon: "material-symbols:music-note"
       description: "VoiceHub 校园广播点歌系统"
       children:
         - name: "点歌系统"
-          url: "/voicehub"
+          url: "/voicehub-player"
           icon: "material-symbols:play-arrow"
         - name: "本周热播"
           url: "/broadcast"
