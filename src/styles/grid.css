@@ -1,40 +1,49 @@
-/* grid.css - 完整修改版 */
+/* grid.css - 完整滚动修复版 */
 
 /* ============================================
    核心布局修复 - 解决滚动问题
    ============================================ */
 
-/* 全局滚动设置 */
+/* 全局滚动设置 - 强制允许滚动 */
 html {
     overflow-y: auto !important;
-    overflow-x: hidden;
+    overflow-x: hidden !important;
     scroll-behavior: smooth;
+    height: auto !important;
+    min-height: 100vh !important;
 }
 
 body {
-    overflow-x: hidden;
-    min-height: 100vh;
-    position: relative;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    min-height: 100vh !important;
+    height: auto !important;
+    position: relative !important;
 }
 
-/* 当banner被禁用时的布局样式 - 修改为相对定位 */
+/* 当banner被禁用时的布局样式 - 使用相对定位 */
 .no-banner-layout {
     margin-top: 5.5rem !important;
     position: relative !important;
     min-height: calc(100vh - 5.5rem) !important;
+    overflow-y: visible !important;
 }
 
 /* 主容器基础样式 */
 .relative.w-full.z-30,
 #main-container {
     position: relative !important;
-    min-height: 100vh;
+    min-height: 100vh !important;
+    height: auto !important;
+    overflow-y: visible !important;
 }
 
-/* 确保主网格有足够高度 */
+/* 确保主网格有足够高度且可滚动 */
 #main-grid {
-    min-height: calc(100vh - 200px);
-    padding-bottom: 2rem;
+    min-height: calc(100vh - 200px) !important;
+    padding-bottom: 2rem !important;
+    overflow-y: visible !important;
+    height: auto !important;
 }
 
 /* 侧边栏粘性定位优化 */
@@ -82,8 +91,10 @@ body {
 
 /* 确保内容包装器正常显示 */
 #content-wrapper {
-    min-height: 300px;
-    width: 100%;
+    min-height: 300px !important;
+    width: 100% !important;
+    overflow-y: visible !important;
+    height: auto !important;
 }
 
 /* 页脚样式优化 */
@@ -98,104 +109,169 @@ body {
 }
 
 /* ============================================
-   响应式设计 - 移动端适配
+   响应式设计 - 移动端完整适配
    ============================================ */
 
-/* 平板端适配 */
+/* 平板端适配 (768px - 1024px) */
+@media (max-width: 1024px) {
+    /* 主容器强制可滚动 */
+    #main-container,
+    .relative.w-full.z-30 {
+        position: relative !important;
+        min-height: 100vh !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+    
+    /* 确保内容区域可滚动 */
+    #content-wrapper {
+        overflow-y: visible !important;
+        height: auto !important;
+        min-height: 300px !important;
+    }
+    
+    /* 主网格可滚动 */
+    #main-grid {
+        overflow-y: visible !important;
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+}
+
+/* 手机端完整修复 (小于768px) */
 @media (max-width: 768px) {
-    /* 移动端无侧边栏布局优化 */
+    /* 主容器边距调整 */
+    .relative.w-full.z-30,
+    #main-container {
+        margin-top: 4rem !important;
+        position: relative !important;
+        min-height: 100vh !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+    
+    /* 无banner模式移动端调整 */
+    .no-banner-layout {
+        margin-top: 4rem !important;
+        min-height: calc(100vh - 4rem) !important;
+        position: relative !important;
+        overflow-y: visible !important;
+    }
+    
+    /* 主网格强制可滚动 */
+    #main-grid {
+        display: block !important;
+        min-height: 100vh !important;
+        height: auto !important;
+        overflow-y: visible !important;
+        padding-bottom: 4rem !important;
+        padding-left: 1rem !important;
+        padding-right: 1rem !important;
+    }
+    
+    /* 确保主要内容区域可滚动 */
+    main {
+        display: block !important;
+        min-height: 50vh !important;
+        height: auto !important;
+        overflow-y: visible !important;
+    }
+    
+    /* 内容包装器强制可滚动 */
+    #content-wrapper {
+        overflow-y: visible !important;
+        height: auto !important;
+        min-height: 300px !important;
+        padding-bottom: 2rem !important;
+    }
+    
+    /* 无侧边栏模式修复 */
     .mobile-no-sidebar {
         display: block !important;
         width: 100% !important;
+        overflow-y: visible !important;
     }
     
     .mobile-no-sidebar main {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        padding-left: 0 !important;
-        padding-right: 0 !important;
+        padding: 0 !important;
+        overflow-y: visible !important;
     }
     
     .mobile-no-sidebar #content-wrapper {
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
+        overflow-y: visible !important;
     }
-
-    /* 修复双侧边栏模式在移动端的布局问题 */
+    
+    /* 双侧边栏模式修复 */
     .mobile-both-sidebar {
+        display: block !important;
         grid-template-columns: 1fr !important;
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
+        padding: 0 1rem !important;
+        overflow-y: visible !important;
     }
     
-    /* 确保移动端主内容区域居中且全宽 */
     .mobile-both-sidebar main {
-        grid-column: 1 / -1 !important;
         width: 100% !important;
-        margin: 0 auto !important;
+        margin: 0 !important;
+        overflow-y: visible !important;
     }
     
-    /* 移动端footer也要居中 */
-    .mobile-both-sidebar .footer {
-        grid-column: 1 / -1 !important;
-    }
-    
-    /* 移动端主容器边距调整 */
-    .relative.w-full.z-30,
-    #main-container {
-        margin-top: 4rem !important;
-    }
-    
-    .no-banner-layout {
-        margin-top: 4rem !important;
-    }
-    
-    /* 移动端侧边栏调整 */
+    /* 侧边栏移动端调整 - 改为相对定位 */
     #left-sidebar,
     #right-sidebar,
     #middle-sidebar {
-        top: 4rem;
-        max-height: calc(100vh - 5rem);
+        position: relative !important;
+        top: auto !important;
+        height: auto !important;
+        max-height: none !important;
+        overflow-y: visible !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* 页脚修复 */
+    .footer {
+        position: relative !important;
+        margin-top: 2rem !important;
+        padding: 1rem !important;
+    }
+    
+    /* 移动端卡片容器修复 */
+    .post-card,
+    .article-card,
+    .content-card {
+        overflow-y: visible !important;
+        height: auto !important;
     }
 }
 
-/* 小屏手机适配 */
+/* 小屏手机完整修复 (小于512px) */
 @media (max-width: 512px) {
-    /* 修复双侧边栏模式在移动端的布局问题 */
+    .relative.w-full.z-30,
+    #main-container {
+        margin-top: 3.5rem !important;
+    }
+    
+    .no-banner-layout {
+        margin-top: 3.5rem !important;
+    }
+    
     .mobile-both-sidebar {
-        grid-template-columns: 1fr !important;
+        padding: 0 0.75rem !important;
+    }
+    
+    #main-grid {
+        padding-bottom: 3rem !important;
         padding-left: 0.75rem !important;
         padding-right: 0.75rem !important;
     }
     
-    /* 确保移动端主内容区域居中且全宽 */
-    .mobile-both-sidebar main {
-        grid-column: 1 / -1 !important;
-        width: 100% !important;
-        margin: 0 auto !important;
-    }
-    
-    /* 移动端footer也要居中 */
-    .mobile-both-sidebar .footer {
-        grid-column: 1 / -1 !important;
-    }
-    
-    /* 小屏手机进一步缩小边距 */
-    .relative.w-full.z-30,
-    #main-container {
-        margin-top: 3.5rem !important;
-    }
-    
-    .no-banner-layout {
-        margin-top: 3.5rem !important;
-    }
-    
-    /* 小屏手机网格内边距调整 */
-    #main-grid {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
+    #content-wrapper {
+        padding-bottom: 1.5rem !important;
     }
 }
 
@@ -206,6 +282,24 @@ body {
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+/* ============================================
+   防止固定高度容器导致无法滚动
+   ============================================ */
+
+/* 移除可能导致滚动问题的固定高度 */
+.fixed-height,
+[style*="height: 100vh"],
+[style*="height:100vh"] {
+    height: auto !important;
+    min-height: 100vh !important;
+}
+
+/* 确保所有滚动容器都允许滚动 */
+.scrollable,
+[style*="overflow: hidden"] {
+    overflow-y: auto !important;
 }
 
 /* ============================================
@@ -225,6 +319,15 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+/* 移动端禁用动画避免性能问题 */
+@media (max-width: 768px) {
+    .onload-animation-up {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
     }
 }
 
@@ -260,7 +363,10 @@ body {
     background-color: transparent;
 }
 
-/* 打印样式优化 */
+/* ============================================
+   打印样式优化
+   ============================================ */
+
 @media print {
     .no-banner-layout {
         margin-top: 0 !important;
@@ -277,7 +383,10 @@ body {
     }
 }
 
-/* 深色模式优化 */
+/* ============================================
+   深色模式优化
+   ============================================ */
+
 @media (prefers-color-scheme: dark) {
     #left-sidebar::-webkit-scrollbar-track,
     #right-sidebar::-webkit-scrollbar-track,
@@ -298,7 +407,11 @@ body {
     }
 }
 
-/* 性能优化 - 减少重绘 */
+/* ============================================
+   性能优化
+   ============================================ */
+
+/* 减少重绘 */
 .transform-gpu {
     transform: translateZ(0);
     will-change: transform;
