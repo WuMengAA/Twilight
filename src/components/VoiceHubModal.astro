@@ -1,0 +1,189 @@
+---
+// VoiceHub 模态框组件
+---
+
+<div id="voicehub-modal" class="voicehub-modal" style="display: none;">
+    <div class="voicehub-modal-overlay"></div>
+    <div class="voicehub-modal-container">
+        <div class="voicehub-modal-header">
+            <h3>VoiceHub 点歌系统</h3>
+            <button class="voicehub-modal-close" id="voicehub-close-btn">&times;</button>
+        </div>
+        <div class="voicehub-modal-body">
+            <iframe 
+                src="https://245959623.xyz" 
+                class="voicehub-iframe"
+                title="VoiceHub 校园点歌系统"
+                loading="lazy"
+            ></iframe>
+        </div>
+    </div>
+</div>
+
+<style>
+    .voicehub-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: system-ui, -apple-system, sans-serif;
+    }
+
+    .voicehub-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(4px);
+    }
+
+    .voicehub-modal-container {
+        position: relative;
+        width: 90%;
+        max-width: 1200px;
+        height: 85%;
+        background-color: #0a1929;
+        border-radius: 16px;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        border: 1px solid #2a3a4a;
+        animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .voicehub-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.5rem;
+        background-color: #0f1a24;
+        border-bottom: 1px solid #2a3a4a;
+    }
+
+    .voicehub-modal-header h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #b8d0e0;
+    }
+
+    .voicehub-modal-close {
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        line-height: 1;
+        cursor: pointer;
+        color: #7a8a9a;
+        transition: color 0.2s;
+        padding: 0;
+        width: 32px;
+        height: 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+    }
+
+    .voicehub-modal-close:hover {
+        color: #f87171;
+        background-color: rgba(248, 113, 113, 0.1);
+    }
+
+    .voicehub-modal-body {
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .voicehub-iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: #fff;
+    }
+
+    /* 移动端适配 */
+    @media (max-width: 768px) {
+        .voicehub-modal-container {
+            width: 95%;
+            height: 90%;
+            border-radius: 12px;
+        }
+        
+        .voicehub-modal-header {
+            padding: 0.75rem 1rem;
+        }
+        
+        .voicehub-modal-header h3 {
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<script>
+    // 模态框控制逻辑
+    let modal: HTMLElement | null = null;
+    let closeBtn: HTMLElement | null = null;
+    let overlay: HTMLElement | null = null;
+
+    function openModal() {
+        if (modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+    }
+
+    function closeModal() {
+        if (modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+    }
+
+    // 全局挂载打开方法，供导航调用
+    if (typeof window !== 'undefined') {
+        (window as any).openVoiceHubModal = openModal;
+    }
+
+    // 初始化事件监听
+    if (typeof document !== 'undefined') {
+        document.addEventListener('DOMContentLoaded', () => {
+            modal = document.getElementById('voicehub-modal');
+            closeBtn = document.getElementById('voicehub-close-btn');
+            overlay = document.querySelector('.voicehub-modal-overlay');
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', closeModal);
+            }
+            if (overlay) {
+                overlay.addEventListener('click', closeModal);
+            }
+
+            // ESC 键关闭
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal && modal.style.display === 'flex') {
+                    closeModal();
+                }
+            });
+        });
+    }
+</script>
