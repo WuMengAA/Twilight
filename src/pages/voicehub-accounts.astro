@@ -1,0 +1,110 @@
+---
+import Layout from "@layouts/Layout.astro";
+---
+
+<Layout title="班级账号 | VoiceHub 校园广播">
+    <div class="accounts-page">
+        <h1>👥 VoiceHub 班级账号</h1>
+        
+        <div class="account-list">
+            <div class="account-header">
+                <span>班级</span>
+                <span>账号</span>
+                <span>初始密码</span>
+            </div>
+            <div class="account-row">
+                <span>1班</span>
+                <span>Seewo101</span>
+                <span>xlzwSeewo101</span>
+            </div>
+            <div class="account-row">
+                <span>2班</span>
+                <span>Seewo102</span>
+                <span>xlzwSeewo102</span>
+            </div>
+            <div class="account-row">
+                <span>3班</span>
+                <span>Seewo103</span>
+                <span>xlzwSeewo103</span>
+            </div>
+            <!-- 继续添加 4-22 班 -->
+        </div>
+        
+        <div class="notice">
+            <strong>📌 说明：</strong>
+            <p>班级账号对应：Seewo101 = 1班，Seewo102 = 2班，以此类推至 Seewo122 = 22班。</p>
+            <p>首次登录请及时修改密码！</p>
+        </div>
+        
+        <div class="action">
+            <a href="https://245959623.xyz" target="_blank" class="btn-primary">🎤 前往点歌</a>
+        </div>
+    </div>
+</Layout>
+
+<style>
+    .accounts-page {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+    }
+    
+    h1 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .account-list {
+        background: rgba(30, 40, 50, 0.5);
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid #2a3a4a;
+    }
+    
+    .account-header {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        background: #1a2a3a;
+        padding: 0.75rem 1rem;
+        font-weight: bold;
+        color: #3b82f6;
+    }
+    
+    .account-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 0.75rem 1rem;
+        border-top: 1px solid #2a3a4a;
+    }
+    
+    .notice {
+        background: rgba(59, 130, 246, 0.1);
+        border-left: 3px solid #3b82f6;
+        padding: 1rem;
+        margin: 1.5rem 0;
+        border-radius: 8px;
+    }
+    
+    .btn-primary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 40px;
+        text-decoration: none;
+    }
+    
+    .action {
+        text-align: center;
+    }
+    
+    @media (max-width: 500px) {
+        .account-header, .account-row {
+            font-size: 0.8rem;
+            padding: 0.5rem;
+        }
+    }
+</style>
