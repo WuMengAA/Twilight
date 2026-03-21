@@ -1,0 +1,28 @@
+---
+import SimpleTime from "./SimpleTime.astro";
+import SimpleWeather from "./SimpleWeather.astro";
+---
+
+<div class="top-bar">
+    <SimpleTime />
+    <SimpleWeather />
+</div>
+
+<style>
+.top-bar {
+    display: flex;
+    gap: 1rem;
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+@media (max-width: 768px) {
+    .top-bar {
+        position: static;
+        justify-content: center;
+        margin: 1rem;
+    }
+}
+</style>
