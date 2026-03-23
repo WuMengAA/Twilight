@@ -1,12 +1,16 @@
 ---
-title: "ClassIsland：让教室大屏变成智能课表"
-published: "2026-03-20"
+title: ClassIsland
+published: 2026-03-20
 updated: ""
-description: "一款开源免费的课表信息显示工具，自动提醒上下课，告别黑板手写课表。"
-image: "/assets/images/classisland-cover.jpg"
-tags: [工具, 开源, ClassIsland, 课表]
-category: "技术工具"
+description: 一款开源免费的课表信息显示工具，自动提醒上下课，告别黑板手写课表。
+tags:
+  - 工具
+  - 开源
+  - ClassIsland
+  - 课表
+category: 技术工具
 draft: false
+image: /assets/images/classisland-cover.jpg
 ---
 
 # ClassIsland：让教室大屏变成智能课表
