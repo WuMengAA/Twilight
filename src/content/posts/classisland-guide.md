@@ -1,5 +1,5 @@
 ---
-title: ClassIsland
+title: ClassIsland:让教室大屏变成智能课表
 published: 2026-03-20
 updated: 2026-03-24T22:07:00.000+08:00
 description: 一款开源免费的课表信息显示工具，自动提醒上下课，告别黑板手写课表。
